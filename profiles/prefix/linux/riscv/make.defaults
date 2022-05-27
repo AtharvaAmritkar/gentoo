@@ -3,9 +3,8 @@
 
 ARCH="riscv"
 CHOST="riscv64-pc-linux-gnu"
-# The base profile sets ACCEPT_KEYWORDS=ppc64 and we don't have that in prefix.
-# Eventually, ~* should be removed once someone is motivated for this arch
-ACCEPT_KEYWORDS="~riscv ~*"
+# The base profile sets ACCEPT_KEYWORDS=riscv and we don't have that in prefix.
+ACCEPT_KEYWORDS="~riscv"
 
 # We don't have lib64 in prefix so, remove it here.
 SYMLINK_LIB=""
