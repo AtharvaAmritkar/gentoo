@@ -13,7 +13,7 @@ inherit python-single-r1 toolchain-funcs
 DESCRIPTION="ELF utils that can check files for security relevant properties"
 HOMEPAGE="https://wiki.gentoo.org/index.php?title=Project:Hardened/PaX_Utilities"
 SRC_URI="mirror://gentoo/${P}.tar.xz
-	https://dev.gentoo.org/~xen0n/distfiles/${P}.tar.xz"
+https://dev.gentoo.org/~xen0n/distfiles/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -21,16 +21,16 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~m68k ~mips ~ppc ~ppc64 ~
 IUSE="caps debug python seccomp"
 
 RDEPEND="caps? ( >=sys-libs/libcap-2.24 )
-	python? (
-		${PYTHON_DEPS}
-		$(python_gen_cond_dep '
+python? (
+    ${PYTHON_DEPS}
+    $(python_gen_cond_dep '
 			dev-python/pyelftools[${PYTHON_USEDEP}]
-		')
-	)
+    ')
+)
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
-	caps? ( virtual/pkgconfig )
+caps? ( virtual/pkgconfig )
 "
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
@@ -67,7 +67,7 @@ src_test() {
 }
 
 src_install() {
-	_emake DESTDIR="${D}" PKGDOCDIR='$(DOCDIR)'/${PF} install
+	_emake DESTDIR="${ED}" PKGDOCDIR='$(DOCDIR)'/${PF} install
 
 	use python && python_fix_shebang "${ED}"/usr/bin/lddtree
 }

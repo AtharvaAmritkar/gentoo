@@ -5,3 +5,4 @@
 # Unmask the linux-glibc combo, or we get bug#574822.
 -elibc_glibc
 -kernel_linux
+pam
