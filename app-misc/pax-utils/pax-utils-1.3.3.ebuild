@@ -72,4 +72,3 @@ src_install() {
 
 	use python && python_fix_shebang "${ED}"/usr/bin/lddtree
 }
-
