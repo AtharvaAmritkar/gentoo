@@ -1,0 +1,11 @@
+# Copyright 1999-2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+ARCH="riscv"
+CHOST="riscv64-pc-linux-gnu"
+# The base profile sets ACCEPT_KEYWORDS=riscv and we don't have that in prefix.
+ACCEPT_KEYWORDS="~riscv"
+
+# We don't have lib64 in prefix so, remove it here.
+SYMLINK_LIB=""
+LIBDIR_riscv="lib"
