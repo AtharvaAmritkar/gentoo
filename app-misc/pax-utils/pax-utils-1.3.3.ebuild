@@ -70,6 +70,6 @@ src_test() {
 src_install() {
 	_emake DESTDIR="${D}" PKGDOCDIR='$(DOCDIR)'/${PF} install
 
-	use python && python_fix_shebang "${DE}"/usr/bin/lddtree
+	use python && python_fix_shebang "${ED}"/usr/bin/lddtree
 }
 
