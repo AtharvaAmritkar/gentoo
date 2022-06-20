@@ -43,7 +43,7 @@ SRC_URI="${SRC_URI}
 	${PATCH_VER:+mirror://gentoo/${P}-patches-${PATCH_VER}.tar.xz}
 "
 
-LICENSE="GPL-2 LGPL-2"
+LICENSE="GPL-3+ LGPL-2.1+"
 SLOT="0"
 
 if [[ ${PV} != 9999* ]] ; then
@@ -127,6 +127,11 @@ gdb_branding() {
 src_configure() {
 	strip-unsupported-flags
 
+	# See https://www.gnu.org/software/make/manual/html_node/Parallel-Output.html
+	# Avoid really confusing logs from subconfigure spam, makes logs far
+	# more legible.
+	MAKEOPTS="--output-sync=line ${MAKEOPTS}"
+
 	local myconf=(
 		# portage's econf() does not detect presence of --d-d-t
 		# because it greps only top-level ./configure. But not
@@ -143,10 +148,21 @@ src_configure() {
 		# systems with debuginfod library, bug #754753
 		--without-debuginfod
 
+		$(use_enable test unit-tests)
+
 		# Allow user to opt into CET for host libraries.
 		# Ideally we would like automagic-or-disabled here.
 		# But the check does not quite work on i686: bug #760926.
 		$(use_enable cet)
+
+		# We need to set both configure options, --with-sysroot and --libdir,
+		# to fix cross build issues that happen when configuring gmp.
+		# We explicitly need --libdir. Having only --with-sysroot without
+		# --libdir would not fix the build issues.
+		# For some reason, it is not enough to set only --with-sysroot,
+		# also not enough to pass --with-gmp-xxx options.
+		--with-sysroot="${ESYSROOT}"
+		--libdir="${ESYSROOT}/usr/$(get_libdir)"
 	)
 
 	local sysroot="${EPREFIX}/usr/${CTARGET}"
@@ -207,8 +223,12 @@ src_configure() {
 	econf "${myconf[@]}"
 }
 
+src_compile() {
+	emake V=1
+}
+
 src_install() {
-	default
+	emake V=1 DESTDIR="${D}" install
 
 	find "${ED}"/usr -name libiberty.a -delete || die
 

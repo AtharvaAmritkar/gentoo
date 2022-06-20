@@ -19,7 +19,7 @@ else
 	SLOT="stable/${ABI_VER}"
 	MY_P="rustc-${PV}"
 	SRC="${MY_P}-src.tar.xz"
-	KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~riscv ~x86"
+	KEYWORDS="amd64 arm arm64 ppc64 ~riscv x86"
 fi
 
 RUST_STAGE0_VERSION="1.$(($(ver_cut 2) - 1)).0"
@@ -420,6 +420,8 @@ src_configure() {
 	if use wasm; then
 		cat <<- _EOF_ >> "${S}"/config.toml
 			[target.wasm32-unknown-unknown]
+			# wasm target does not have profiler_builtins https://bugs.gentoo.org/848483
+			profiler = false
 			linker = "$(usex system-llvm lld rust-lld)"
 		_EOF_
 	fi

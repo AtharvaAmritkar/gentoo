@@ -20,7 +20,7 @@ SRC_URI="https://fastdl.mongodb.org/src/${MY_P}.tar.gz"
 
 LICENSE="Apache-2.0 SSPL-1"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 -riscv"
+KEYWORDS="amd64 ~arm64 -riscv"
 IUSE="debug kerberos lto ssl test +tools"
 RESTRICT="!test? ( test )"
 
@@ -59,6 +59,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.4.1-gcc11.patch"
 	"${FILESDIR}/${PN}-5.0.2-glibc-2.34.patch"
 	"${FILESDIR}/${PN}-4.4.10-boost-1.79.patch"
+	"${FILESDIR}/${PN}-4.4.10-no-force-lld.patch"
 )
 
 S="${WORKDIR}/${MY_P}"

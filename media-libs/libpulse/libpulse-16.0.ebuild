@@ -16,7 +16,7 @@ if [[ ${PV} = 9999 ]]; then
 	EGIT_REPO_URI="https://gitlab.freedesktop.org/pulseaudio/pulseaudio"
 else
 	SRC_URI="https://freedesktop.org/software/pulseaudio/releases/${MY_P}.tar.xz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~loong ppc ppc64 ~riscv sparc x86 ~amd64-linux ~x86-linux"
 fi
 
 S="${WORKDIR}/${MY_P}"
@@ -24,7 +24,7 @@ S="${WORKDIR}/${MY_P}"
 LICENSE="LGPL-2.1+"
 
 SLOT="0"
-IUSE="+asyncns dbus doc +glib gtk selinux systemd tcpd test valgrind X"
+IUSE="+asyncns dbus doc +glib gtk selinux systemd test valgrind X"
 RESTRICT="!test? ( test )"
 
 # NOTE: libpcre needed in some cases, bug #472228
@@ -39,7 +39,6 @@ RDEPEND="
 	gtk? ( x11-libs/gtk+:3 )
 	selinux? ( sec-policy/selinux-pulseaudio )
 	systemd? ( sys-apps/systemd:= )
-	tcpd? ( sys-apps/tcp-wrappers )
 	valgrind? ( dev-util/valgrind )
 	X? (
 		x11-libs/libX11[${MULTILIB_USEDEP}]
@@ -130,7 +129,7 @@ multilib_src_configure() {
 		-Dsoxr=disabled
 		-Dspeex=disabled
 		$(meson_native_use_feature systemd)
-		$(meson_native_use_feature tcpd tcpwrap)
+		-Dtcpwrap=disabled
 		-Dudev=disabled
 		$(meson_native_use_feature valgrind)
 		$(meson_feature X x11)

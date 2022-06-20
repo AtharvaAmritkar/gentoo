@@ -4,16 +4,16 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=( python3_{8..11} )
+PYTHON_COMPAT=( pypy3 python3_{8..11} )
 inherit distutils-r1
 
 DESCRIPTION="Pure-python utilities in the same spirit as the standard library"
-HOMEPAGE="https://boltons.readthedocs.org/"
-SRC_URI="https://github.com/mahmoud/boltons/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://boltons.readthedocs.io/"
+SRC_URI="https://github.com/mahmoud/boltons/archive/${PV}.tar.gz -> ${P}.gh.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~x86"
+KEYWORDS="amd64 ~arm ~arm64 ~riscv ~x86"
 
 distutils_enable_tests pytest
 distutils_enable_sphinx docs \
@@ -31,3 +31,7 @@ EPYTEST_DESELECT=(
 	# by e.g. pytest-qt noise or python3.11 adding ^^^^^^ markers
 	tests/test_tbutils.py::test_exception_info
 )
+
+python_test() {
+	epytest -p no:django
+}
