@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools flag-o-matic systemd toolchain-funcs tmpfiles
+inherit autotools edo flag-o-matic multiprocessing systemd tmpfiles toolchain-funcs
 
 DESCRIPTION="A persistent caching system, key-value and data structures database"
 HOMEPAGE="https://redis.io"
@@ -94,7 +94,7 @@ src_prepare() {
 		LUAPKGCONFIG=lua
 	fi
 	# The upstream configure script handles luajit specially, and is not
-	# effected by these changes.
+	# affected by these changes.
 	einfo "Selected LUAPKGCONFIG=${LUAPKGCONFIG}"
 	sed -i	\
 		-e "/^AC_INIT/s|, [0-9].+, |, $PV, |" \
@@ -125,6 +125,10 @@ src_compile() {
 
 	tc-export AR CC RANLIB
 	emake V=1 ${myconf} AR="${AR}" CC="${CC}" RANLIB="${RANLIB}"
+}
+
+src_test() {
+	edo ./runtest --clients "$(makeopts_jobs)"
 }
 
 src_install() {

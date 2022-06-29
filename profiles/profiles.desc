@@ -99,7 +99,9 @@ arm		default/linux/arm/17.0/armv7a/hardened		exp
 arm		default/linux/arm/17.0/armv7a/hardened/selinux	dev
 arm		default/linux/arm/17.0/armv7a/desktop		dev
 arm		default/linux/arm/17.0/armv7a/desktop/gnome	dev
+arm		default/linux/arm/17.0/armv7a/desktop/gnome/systemd	dev
 arm		default/linux/arm/17.0/armv7a/desktop/plasma	dev
+arm		default/linux/arm/17.0/armv7a/desktop/plasma/systemd	dev
 arm		default/linux/arm/17.0/armv7a/developer		exp
 arm		default/linux/arm/17.0/armv7a/systemd		dev
 
@@ -149,7 +151,8 @@ loong		default/linux/loong/22.0/la64v100/lp64d/systemd				exp
 
 # M68K Profiles
 # @MAINTAINER: m68k@gentoo.org
-m68k		default/linux/m68k/17.0				exp
+m68k		default/linux/m68k/17.0					exp
+m68k		default/linux/m68k/17.0/systemd				exp
 
 # MIPS Profiles
 # @MAINTAINER: mips@gentoo.org

@@ -20,7 +20,7 @@ else
 
 	TEST_TARBALL_VERSION=2.93.0
 	SRC_URI+=" test? ( https://dev.gentoo.org/~sam/distfiles/${CATEGORY}/${PN}/${PN}-${TEST_TARBALL_VERSION}-tests.tar.bz2 )"
-	KEYWORDS="~amd64 ~arm ~arm64"
+	KEYWORDS="amd64 ~arm ~arm64"
 fi
 
 SLOT="${PV%.*}"
@@ -298,7 +298,7 @@ src_test() {
 	cmake_src_test
 
 	# Clean up the image directory for src_install
-	rm -fr ${ED}/* || die
+	rm -fr "${ED}"/* || die
 }
 
 src_install() {

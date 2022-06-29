@@ -2,10 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-PYTHON_COMPAT=( python3_{8..10} )
 VALA_MIN_API_VERSION="0.40"
 
-inherit gnome.org gnome2-utils meson python-any-r1 vala virtualx xdg
+inherit gnome.org gnome2-utils meson vala virtualx xdg
 
 DESCRIPTION="A calculator application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Calculator"
@@ -13,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Calculator"
 LICENSE="GPL-3+"
 SLOT="0"
 IUSE="+introspection test"
-KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~riscv ~sparc"
+KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~riscv ~sparc ~x86"
 
 # gtksourceview vapi definitions in dev-lang/vala itself are too old, and newer vala removes them
 # altogether, thus we need them installed by gtksourceview[vala]
@@ -31,7 +30,6 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
-	${PYTHON_DEPS}
 	dev-libs/appstream-glib
 	dev-util/itstool
 	>=sys-devel/gettext-0.19.8

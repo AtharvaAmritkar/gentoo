@@ -3,7 +3,7 @@
 
 EAPI=6
 
-USE_RUBY="ruby26"
+USE_RUBY="ruby26 ruby27"
 
 RUBY_FAKEGEM_TASK_TEST="MT_NO_PLUGINS=true"
 
@@ -23,7 +23,7 @@ SRC_URI="https://github.com/rails/rails/archive/v${PV}.tar.gz -> rails-${PV}.tgz
 
 LICENSE="MIT"
 SLOT="$(ver_cut 1-2)"
-KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~x86 ~amd64-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 x86 ~amd64-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RUBY_S="rails-${PV}/${PN}"
