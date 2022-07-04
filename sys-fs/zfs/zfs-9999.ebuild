@@ -4,7 +4,7 @@
 EAPI=7
 
 DISTUTILS_OPTIONAL=1
-PYTHON_COMPAT=( python3_{8,9,10} )
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit autotools bash-completion-r1 dist-kernel-utils distutils-r1 flag-o-matic linux-info pam systemd udev usr-ldscript
 
@@ -99,6 +99,10 @@ REQUIRED_USE="
 "
 
 RESTRICT="test"
+
+PATCHES=(
+	"${FILESDIR}"/2.1.5-dracut-zfs-missing.patch
+)
 
 pkg_pretend() {
 	use rootfs || return 0

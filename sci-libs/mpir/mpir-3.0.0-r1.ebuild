@@ -6,12 +6,12 @@ EAPI=7
 inherit autotools toolchain-funcs
 
 DESCRIPTION="Library for arbitrary precision integer arithmetic (fork of gmp)"
-HOMEPAGE="http://www.mpir.org/"
-SRC_URI="http://www.mpir.org/${P}.tar.bz2"
+HOMEPAGE="https://www.mpir.org/"
+SRC_URI="https://www.mpir.org/${P}.tar.bz2"
 
 LICENSE="LGPL-3"
 SLOT="0/23"
-KEYWORDS="~alpha amd64 arm ~arm64 hppa ~ia64 ppc ppc64 ~riscv ~s390 ~sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ppc ppc64 ~riscv ~s390 ~sparc x86 ~amd64-linux ~x86-linux"
 IUSE="+cxx cpudetection"
 
 BDEPEND="

@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-LUA_COMPAT=( lua5-3 )
+LUA_COMPAT=( lua5-4 lua5-3 )
 
 [[ ${PV} == *9999 ]] && SCM="git-r3"
 inherit toolchain-funcs flag-o-matic lua-single systemd linux-info ${SCM}
@@ -24,7 +24,7 @@ else
 fi
 
 LICENSE="GPL-2 LGPL-2.1"
-SLOT="0/${PV}"
+SLOT="0/$(ver_cut 1-2)"
 IUSE="+crypt doc examples +slz +net_ns +pcre pcre-jit prometheus-exporter
 ssl systemd +threads tools vim-syntax zlib lua 51degrees wurfl"
 REQUIRED_USE="pcre-jit? ( pcre )
@@ -52,6 +52,10 @@ S="${WORKDIR}/${MY_P}"
 
 DOCS=( CHANGELOG CONTRIBUTING MAINTAINERS README )
 EXTRAS=( admin/halog admin/iprange dev/tcploop dev/hpack )
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-lua54.patch
+)
 
 haproxy_use() {
 	(( $# != 2 )) && die "${FUNCNAME} <USE flag> <make option>"
@@ -133,7 +137,7 @@ src_install() {
 	doins examples/errorfiles/*
 
 	if use doc; then
-		dodoc ROADMAP doc/*.txt
+		dodoc doc/*.txt
 		#if use lua; then
 		# TODO: doc/lua-api/
 		#fi

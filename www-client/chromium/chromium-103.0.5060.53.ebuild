@@ -20,8 +20,8 @@ SRC_URI="https://commondatastorage.googleapis.com/chromium-browser-official/${P}
 	https://github.com/stha09/chromium-patches/releases/download/${PATCHSET_NAME}/${PATCHSET_NAME}.tar.xz"
 
 LICENSE="BSD"
-SLOT="0/beta"
-KEYWORDS="~amd64 ~arm64"
+SLOT="0/stable"
+KEYWORDS="amd64 arm64"
 IUSE="+X component-build cups cpu_flags_arm_neon debug gtk4 +hangouts headless +js-type-check kerberos libcxx lto +official pic +proprietary-codecs pulseaudio screencast selinux +suid +system-ffmpeg +system-harfbuzz +system-icu +system-png vaapi wayland widevine"
 REQUIRED_USE="
 	component-build? ( !suid !libcxx )
@@ -245,6 +245,9 @@ pre_build_checks() {
 			if ! ver_test "$(clang-major-version)" -ge 12; then
 				die "At least clang 12 is required"
 			fi
+		fi
+		if use js-type-check; then
+			"${EPREFIX}"/usr/bin/java -version 2>1 > /dev/null || die "Java VM not setup correctly"
 		fi
 	fi
 
@@ -792,9 +795,9 @@ src_configure() {
 			filter-flags "-g*"
 		fi
 
-		# Prevent libvpx build failures. Bug 530248, 544702, 546984.
+		# Prevent libvpx/xnnpack build failures. Bug 530248, 544702, 546984, 853646.
 		if [[ ${myarch} == amd64 || ${myarch} == x86 ]]; then
-			filter-flags -mno-mmx -mno-sse2 -mno-ssse3 -mno-sse4.1 -mno-avx -mno-avx2 -mno-fma -mno-fma4
+			filter-flags -mno-mmx -mno-sse2 -mno-ssse3 -mno-sse4.1 -mno-avx -mno-avx2 -mno-fma -mno-fma4 -mno-xop
 		fi
 	fi
 

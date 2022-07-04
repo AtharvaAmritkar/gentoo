@@ -4,16 +4,16 @@
 EAPI=8
 
 LUA_COMPAT=( lua5-1 luajit )
-PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_COMPAT=( python3_{8..11} )
 
 inherit gnome.org lua-single meson python-single-r1 vala virtualx xdg
 
 DESCRIPTION="A GObject plugins library"
-HOMEPAGE="https://developer.gnome.org/libpeas/stable/"
+HOMEPAGE="https://wiki.gnome.org/Projects/Libpeas https://gitlab.gnome.org/GNOME/libpeas"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm arm64 ~ia64 ~ppc ~ppc64 ~riscv ~sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm arm64 ~ia64 ~loong ~ppc ~ppc64 ~riscv ~sparc x86 ~amd64-linux ~x86-linux"
 
 IUSE="glade +gtk gtk-doc lua +python vala"
 REQUIRED_USE="lua? ( ${LUA_REQUIRED_USE} )

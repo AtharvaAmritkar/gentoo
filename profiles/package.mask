@@ -33,10 +33,105 @@
 
 #--- END OF EXAMPLES ---
 
-# Marc Schiffbauer <mschiff@gentoo.org> (2022-06-20)
+# David Seifert <soap@gentoo.org> (2022-07-02)
+# Unmaintained, no response on bugs, stuck on python 3.9. If you
+# want to unmask these, you have to at least port them to python 3.10.
+# Bugs #809524, #809527, #809530, #809533, #809833, #845729, #845816,
+# #846017, #846200, #846203, #846206, #853844, removal on 2022-08-01.
+app-misc/siglo
+dev-python/gatt-python
+dev-python/pynput
+media-libs/elgato-streamdeck
+media-video/streamdeck-ui
+net-wireless/jackit
+net-wireless/kismet-rest
+net-wireless/kismetdb
+
+# Sam James <sam@gentoo.org> (2022-07-02)
+# Deprecated dependencies, no activity upstream. Bugs #845615, #796326.
+# Removal on 2022-08-02.
+app-vim/pyclewn
+
+# Michał Górny <mgorny@gentoo.org> (2022-07-02)
+# Last release in 2014.  Archived upstream, and superseded by GeoIP2
+# (not packaged).  There is only one revdep (net-p2p/deluge) for which
+# it is optional.
+# Removal on 2022-08-01.  Bug #855737.
+dev-python/geoip-python
+
+# Matthew Smith <matthew@gentoo.org> (2022-07-02)
+# Superseded by dev-util/rebar:3.
+# Removal in 30 days. Bug #855728.
+dev-util/rebar-bin
+
+# Fabian Groffen <grobian@gentoo.org> (2022-07-02)
+# Segfaults handling SPF validations (warn on permerror), like the
+# previous release, better not to trust your important mail to
+~mail-mta/exim-4.96
+
+# Ulrich Müller <ulm@gentoo.org> (2022-06-30)
+# Pretest versions, masked for testing.
+~app-editors/emacs-28.1.90
+~app-editors/emacs-28.1.91
+~app-editors/emacs-28.1.92
+
+# Marek Szuba <marecki@gentoo.org> (2022-06-30)
+# A GNOME 2-era library with no consumers left in the tree, marked
+# as deprecated since March 2022. Removal in 30 days (Bug #855299).
+gnome-extra/gtkhtml
+
+# Piotr Karbowski <slashbeast@gentoo.org> (2022-06-26)
+# Abandoned upstream, depends on API that no longer exists.
+# Removal on 2022-07-26.
+dev-python/jikanpy
+
+# Hans de Graaff <graaff@gentoo.org> (2022-06-25)
+# Obsolete slot. Use a newer slot instead.
+# Removal in 30 days.
+dev-ruby/hashie:3
+
+# Hans de Graaff <graaff@gentoo.org> (2022-06-25)
+# Obsolete slot. Use a newer slot instead.
+# Removal in 30 days.
+dev-ruby/marcel:0
+
+# Hans de Graaff <graaff@gentoo.org> (2022-06-25)
+# Obsolete slot. Use a newer slot instead.
+# Removal in 30 days.
+dev-ruby/paramesan:0
+
+# Hans de Graaff <graaff@gentoo.org> (2022-06-25)
+# Obsolete slot. Use a newer slot instead.
+# Removal in 30 days.
+dev-ruby/paramesan:0
+
+# Hans de Graaff <graaff@gentoo.org> (2022-06-24)
+# Obsolete slot. Use a newer slot instead.
+# Removal in 30 days.
+dev-ruby/rspec-rails:3
+
+# Marc Schiffbauer <mschiff@gentoo.org> (2022-06-22)
 # Deprecated package. Removal in 30 days.
 # see bug #843746
 sys-power/tuxedo-cc-wmi
+
+# Matt Turner <mattst88@gentoo.org> (2022-06-21)
+# Dead slot. No reverse dependencies.
+# Removal on 2022-07-21. Bug #846617
+app-misc/tracker:0
+app-misc/tracker-miners:0
+
+# Sam James <sam@gentoo.org> (2022-06-21)
+# Fails to build with GCC 12, upstream location is gone, no sign of activity,
+# and very few other distributions packaging this. Bug #841824.
+# Removal on 2022-07-21.
+app-backup/kfoldersync
+
+# Sam James <sam@gentoo.org> (2022-06-21)
+# Obsolete, no reverse dependencies, does not run test suite, and doesn't
+# support Python 3.10+. Use app-crypt/gpgme[python] instead.
+# Bugs #845807, #798372, #748531. Removal on 2022-07-21.
+dev-python/pygpgme
 
 # Hans de Graaff <graaff@gentoo.org> (2022-06-19)
 # Obsolete slot. Use a newer slot instead.
@@ -172,150 +267,17 @@ dev-python/polygon
 # Removal on 2022-07-05.  Bug #845756.
 dev-python/mysql-connector-python
 
-# Michał Górny <mgorny@gentoo.org> (2022-06-02)
-# The current Gentoo version requires setup.py to exist which breaks
-# the new versions of its revdeps.  The new upstream release is broken
-# by design and requires installing setuptools in a virtualenv (enjoy
-# pep517) to get the package's version, so fails without Internet.
-# No reply on the bug for 3 months already.
-# Removal on 2022-07-02.  Bug #834534.
-dev-python/jaraco-packaging
-
-# Sam James <sam@gentoo.org> (2022-06-02)
-# No reverse dependencies, uses long-deprecated and abandoned nose for tests,
-# no upstream activity in years. Removal on 2022-07-02.
-dev-python/chai
-
-# Michał Górny <mgorny@gentoo.org> (2022-05-31)
-# Causes a regression in dev-python/werkzeug that breaks all its
-# revdeps.  If one of the pytest plugins using werkzeug is installed,
-# this mean that all pytest invocations suddenly fail.  Mask until
-# we resolve this.
-# https://github.com/pallets/werkzeug/issues/2425
-=dev-lang/python-3.11.0_beta2
-
-# Sam James <sam@gentoo.org> (2022-05-30)
-# Doesn't support Python 3.10+, maintainer-needed, and out of date.
-# Bugs #818847, #845936, #786585.
-# Removal on 2022-06-30.
-dev-util/dput-ng
-dev-util/distro-info
-dev-util/distro-info-data
-
-# Sam James <sam@gentoo.org> (2022-05-30)
-# No upstream activity since 2019, doesn't even support Python 3.9+ properly,
-# and doesn't support Python 3.10. Bugs #845819, #798384. Removal on 2022-06-30.
-dev-python/pypcap
-
-# Sam James <sam@gentoo.org> (2022-05-30)
-# Obsolete, no new releases since 2015, doesn't support Python 3.10.
-# Bugs #845681, #747982. Removal on 2022-06-30.
-dev-python/3to2
-
-# Sam James <sam@gentoo.org> (2022-05-30)
-# No upstream development since 2017, doesn't support Python 3.10. Bug #845678.
-# Removal on 2022-06-30.
-dev-perl/Inline-Python
-
-# Sam James <sam@gentoo.org> (2022-05-30)
-# Out of date, no tests, and most importantly, doesn't yet support Python 3.10
-# which will soon be the default. Bugs #845783, #822540, #798204.
-# Removal on 2022-06-30.
-dev-python/pycapnp
-
 # Matt Turner <mattst88@gentoo.org> (2022-05-30)
 # libwacom-2 broke ABI compatibility; reverse dependencies need to be updated.
 # Bug #848501
 >=dev-libs/libwacom-2.0
 >=x11-drivers/xf86-input-wacom-1.0
 
-# Hans de Graaff <graaff@gentoo.org> (2022-05-29)
-# Old slots that are no longer used by dependencies. Upgrade to the
-# latest slot instead. Masked for removal in one month.
-dev-ruby/regexp_parser:0
-dev-ruby/regexp_parser:1
-
 # Sam James <sam@gentoo.org> (2022-05-28)
 # GCC 9 and older no longer receive upstream support or fixes for
 # bugs. Please switch to a newer GCC version using gcc-config.
 # The lowest supported version of GCC is GCC 10.
 <sys-devel/gcc-10
-
-# Sam James <sam@gentoo.org> (2022-05-28)
-# Masked for removal. Dead upstream, no releases in a long time, and superseded
-# by dev-python/python-pam. Fails tests in a few scary ways too. Removal
-# on 2022-06-28. Bugs #833297, #802927.
-dev-python/pypam
-
-# Andrey Grozin <grozin@gentoo.org> (2022-05-25)
-# Does not work with the current dev-python/pyx
-# Removal on 2022-06-24
-dev-python/pyfeyn
-
-# Michał Górny <mgorny@gentoo.org> (2022-05-25)
-# dev-python/m2r has not seen any activity since Jun 2019 and requires
-# old version of dev-python/mistune.  dev-python/sphinxcontrib-openapi
-# has not seen any activity since Oct 2020.  Their only revdep
-# is dev-python/jupyter_server[doc], so let's mask the flag and remove
-# them.
-# Removal on 2022-06-24.  Bug #843881.
-dev-python/m2r
-dev-python/sphinxcontrib-openapi
-
-# Matt Turner <mattst88@gentoo.org> (2022-05-23)
-# Dead package upstream. Depends on dead app-misc/tracker:0.
-# Removal on 2022-06-23. Bug #846605
-gnome-extra/gnome-documents
-
-# Sam James <sam@gentoo.org> (2022-05-22)
-# No upstream activity since 2017. Doesn't support Python 3.10.
-# Removal on 2022-06-22. bug #845732.
-dev-python/gevent-websocket
-
-# Sam James <sam@gentoo.org> (2022-05-22)
-# Several open bugs. No upstream activity for a while, doesn't
-# support Python 3.10+, test suite not being run. Removal on 2022-06-22.
-# bug #625800, bug #796974, bug #796977, bug #831916, bug #845888.
-dev-python/sqlalchemy-migrate
-
-# Sam James <sam@gentoo.org> (2022-05-22)
-# No upstream activity since 2015, no reverse dependencies,
-# no Python 3.10 support. Removal on 2022-06-22. bug #845822.
-dev-python/pypeg2
-
-# Sam James <sam@gentoo.org> (2022-05-22)
-# Unmaintained, no upstream activity since 2013, upstream repository disappeared.
-# Long obsolete with no reverse dependencies, as now integrated within pytest.
-# Doesn't support Python 3.10+.
-# Removal on 2022-06-22. bug #700944, bug #845834
-dev-python/pytest-cache
-
-# Sam James <sam@gentoo.org> (2022-05-21)
-# No activity upstream since 2018, unmaintained upstream, does not support
-# Python 3.10+. Removal on 2022-06-21. bug #845726.
-dev-python/fusepy
-
-# Sam James <sam@gentoo.org> (2022-05-21)
-# Unmaintained in Gentoo, no recent activity upstream, and most importantly
-# does not yet support Python 3.10+. Removal on 2022-06-21. bugs #845720, #797850.
-dev-python/drf-yasg
-
-# Hans de Graaff <graaff@gentoo.org> (2022-05-20)
-# Unused slots of cucumber components that are no longer or were never
-# used by current cucumber versions. Masked for removal in 30 days.
-dev-util/cucumber-core:9
-dev-util/cucumber-create-meta:4
-dev-util/cucumber-cucumber-expressions:10
-dev-util/cucumber-gherkin:18
-dev-util/cucumber-gherkin:20
-dev-util/cucumber-html-formatter:13
-dev-util/cucumber-html-formatter:16
-dev-util/cucumber-messages:13
-dev-util/cucumber-messages:14
-dev-util/cucumber-messages:15
-dev-util/cucumber-tag-expressions:2
-dev-util/cucumber-tag-expressions:3
-dev-util/cucumber-wire:5
 
 # Matt Turner <mattst88@gentoo.org> (2022-04-30)
 # Masked for testing. Apparently causes crashes. Bug #841857.
@@ -441,11 +403,6 @@ net-p2p/arti
 <sci-electronics/kicad-templates-6.0.2
 <app-doc/kicad-doc-6.0.2
 
-# Jonas Stein <jstein@gentoo.org> (2022-02-08)
-# Not maintained, open bugs, upstream outdated.
-# Removal after 2022-07-01.  Bug #832953.
-x11-misc/easystroke
-
 # Eray Aslan <eras@gentoo.org> (2022-01-24)
 # Mask experimental software
 =mail-mta/postfix-3.8*
@@ -453,7 +410,7 @@ x11-misc/easystroke
 # James Beddek <telans@posteo.de> (2022-01-19)
 # FFmpeg 5.0 ABI/API changes break many packages.
 # Masking for tracker/tinderbox. Bug #831437
->=media-video/ffmpeg-5.0
+=media-video/ffmpeg-5*
 
 # Brian Evans <grknight@gentoo.org> (2022-01-07)
 # The main consumer, phpunit, does not initiate the new timer correctly
@@ -484,11 +441,6 @@ dev-tex/pdfannotextractor
 # new features. Beside vulkan, it is typically behind the main branch
 # and may be buggier or less secure. Only unmask if really wanted.
 x11-drivers/nvidia-drivers:0/vulkan
-
-# Fabian Groffen <grobian@gentoo.org> (2021-10-03)
-# Masked for erratic behaviour
-# https://bugs.exim.org/show_bug.cgi?id=2813
-=mail-mta/exim-4.95-r1
 
 # Mart Raudsepp <leio@gentoo.org> (2021-09-23)
 # Incompatible with c++17 abseil-cpp, no in-tree consumers yet

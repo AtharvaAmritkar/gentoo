@@ -4,7 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=flit
-PYTHON_COMPAT=( python3_{8..11} )
+PYTHON_COMPAT=( python3_{8..11} pypy3 )
 
 inherit distutils-r1
 
@@ -22,7 +22,7 @@ S=${WORKDIR}/${MY_P}
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~riscv"
+KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~riscv ~s390 ~x86"
 
 RDEPEND="
 	<dev-python/docutils-0.19[${PYTHON_USEDEP}]
@@ -43,10 +43,19 @@ BDEPEND="
 	)
 "
 
-EPYTEST_DESELECT=(
-	# Unimportant tests needing a new dep linkify
-	tests/test_renderers/test_myst_config.py::test_cmdline
-	tests/test_sphinx/test_sphinx_builds.py::test_extended_syntaxes
-)
-
 distutils_enable_tests pytest
+
+python_test() {
+	local EPYTEST_DESELECT=(
+		# Unimportant tests needing a new dep linkify
+		tests/test_renderers/test_myst_config.py::test_cmdline
+		tests/test_sphinx/test_sphinx_builds.py::test_extended_syntaxes
+	)
+
+	[[ ${EPYTHON} == pypy3 ]] && EPYTEST_DESELECT+=(
+		# bad test relying on exact exception messages
+		"tests/test_renderers/test_include_directive.py::test_errors[9-Non-existent path:]"
+	)
+
+	epytest
+}
