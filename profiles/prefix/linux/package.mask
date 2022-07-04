@@ -5,3 +5,4 @@
 # Prefix Guest does use host libc and host kernel's headers,
 # hence packages should depend on virtual/os-headers instead.
 sys-kernel/linux-headers
+sys-libs/pam

@@ -5,3 +5,4 @@
 # business being in Gentoo Prefix
 -*sys-apps/busybox
 -*sys-apps/util-linux
+-*sys-apps/pam
